@@ -29,7 +29,17 @@ Tudo já estará pré-configurado para que o `npm` utilize o `bower` automaticam
 npm install
 ```
 
-Isso fará com que `bower install` também seja executado. Após o término da execução, você poderá reparar que existem dois novos diretórios em seu projeto.
+Se você estiver usando o Windows, pode ser que encontre o seguinte erro:
+
+`nodejs/windows Error: ENOENT, stat 'C:\Users\<seu_usuario>\AppData\Roaming\npm'`
+
+Se isso acontecer, basta criar o diretório no path especificado e tentar novamente. Veja [o erro no StackOverflow][windows-error]
+
+```
+mkdir "C:\Users\<seu_usuario>\AppData\Roaming\npm"
+```
+
+`npm install` fará com que `bower install` também seja executado. Após o término da execução, você poderá reparar que existem dois novos diretórios em seu projeto.
 
 * `node_modules` - contém os pacotes npm necessários
 * `app/bower_components` - contém o código das dependencias javascript (angularjs, underscorejs, jquery, etc)
@@ -152,3 +162,4 @@ rmartins@thoughtworks.com
 [jasmine]: http://pivotal.github.com/jasmine/
 [karma]: http://karma-runner.github.io
 [http-server]: https://github.com/nodeapps/http-server
+[windows-error]: http://stackoverflow.com/questions/25093276/nodejs-windows-error-enoent-stat-c-users-rt-appdata-roaming-npm
