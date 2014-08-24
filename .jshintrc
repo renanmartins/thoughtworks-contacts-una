@@ -17,6 +17,9 @@
     "smarttabs": true,
     "globals": {
         "angular": false,
+        "browser": false,
+        "element": false,
+        "by": false,
         "describe": false,
         "protractor": false,
         "it": false,
