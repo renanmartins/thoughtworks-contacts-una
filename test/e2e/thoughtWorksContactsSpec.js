@@ -3,10 +3,11 @@ describe('ThoughtWorks Contacts', function() {
 
   beforeEach(function () {
     browser.get('#');
-    groups = element.all(by.repeater('(group,contacts) in groups'));
   });
 
   it('should group existent contacts alphabetically', function() {
+    groups = element.all(by.repeater('(group,contacts) in groups'));
+
     expect(groups.count()).toBe(4);
     expect(getGroupName(0)).toEqual('A');
     expect(getGroupName(1)).toEqual('P');
@@ -15,6 +16,8 @@ describe('ThoughtWorks Contacts', function() {
   });
 
   it('should contain correct contacts in each group', function() {
+    groups = element.all(by.repeater('(group,contacts) in groups'));
+
     getGroupContacts(0).then(function(contacts) {
       expect(contacts[0].getText()).toEqual('Anabela');
     });
@@ -30,6 +33,21 @@ describe('ThoughtWorks Contacts', function() {
     });
   });
 
+  it('should add new contact', function() {
+    element(by.model('contactdata.name')).sendKeys('Ricardo Amorim');
+    element(by.model('contactdata.phone')).sendKeys('5198765432');
+    element(by.model('contactdata.email')).sendKeys('ramorim@thoughtworks.com');
+    element(by.buttonText('Save')).click();
+
+    groups = element.all(by.repeater('(group,contacts) in groups'));
+    expect(groups.count()).toBe(4);
+    getGroupContacts(2).then(function(contacts) {
+      expect(contacts.length).toBe(2);
+      expect(contacts[0].getText()).toEqual('Renan Martins');
+      expect(contacts[1].getText()).toEqual('Ricardo Amorim');
+    });
+  });
+
   var getGroupName = function(index) {
     return getGroup(index).findElement(by.binding('group')).getText();
   };
@@ -41,4 +59,5 @@ describe('ThoughtWorks Contacts', function() {
   var getGroup = function(index) {
     return groups.get(index);
   };
+
 });
