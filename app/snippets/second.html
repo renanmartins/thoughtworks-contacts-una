@@ -11,7 +11,7 @@
       <button ng-click="contacts.push({name:newContact})">ADD CONTACT</button>
 
       <!-- add filter:{name:search} -->
-      <ul ng-repeat="contact in contacts | orderBy: 'name' ">
+      <ul ng-repeat="contact in contacts | orderBy: 'name' | filter:{name:search} ">
         <li>{{contact.name}}</li>
       </ul>
 
@@ -24,7 +24,7 @@
 
       <hr>
 
-      <!-- Filter: <input ng-model="search" type="text" /> -->
+      <input ng-model="search" type="text" />
     </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
